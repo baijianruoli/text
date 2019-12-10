@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件 -->
+<mapper namespace="testa">
+    <select id="findPersonByName" resultType="liqiqi.text.user" parameterType="String">
+   select * from user where person.personname= #{id}
+</select>
+    <select id="selectall" resultType="liqiqi.text.user" >
+    select * from user
+</select>
+    <select id="cout" resultType="int" >
+    select count(*)  from user
+</select>
+    <insert id="insert"  parameterType="liqiqi.text.user">
+        insert into user (username,password) values(#{username},#{password});
+    </insert>
+</mapper>
