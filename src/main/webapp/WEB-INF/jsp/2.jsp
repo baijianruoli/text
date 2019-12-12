@@ -27,19 +27,17 @@
         bottom: 100px;
 
     }
-
 </style>
 <body>
 <div  id="id" align="center" >
-    <p >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span ><a href="/WEB-INF/jsp/2.jsp" ><b>我的信息</b></a></span>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span ><a href="/hello" ><b>发布失物</b></a></span>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span><a href="/hello1" ><b>发布招领</b></a></span>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span><a href="/hello2" ><b>查询招领</b></a></span>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span><a href="/hello3" ><b>查询失物</b></a></span>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span><a href="/hello4" ><b>网站大厅</b></a></span>
+    <p >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span ><a href="/WEB-INF/jsp/2.jsp" target="_blank"><b>我的信息</b></a></span>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span ><a href="/hello" target="_blank"><b>发布失物</b></a></span>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span><a href="/hello1" target="_blank"><b>发布招领</b></a></span>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span><a href="/hello2" target="_blank"><b>查询招领</b></a></span>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span><a href="/hello3" target="_blank"><b>查询失物</b></a></span>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span><a href="/hello4" target="_blank"><b>网站大厅</b></a></span>
     </p>
 </div>
-
 <div>
     <%
         String name= (String) request.getSession().getAttribute("name");
@@ -54,8 +52,7 @@
 
 </table>
 </div>
-<marquee direction="right" onmouseout="start()" onmouseover="stop()"  behavior="alternate" id="d">欢迎进入失物招领系统
-</marquee>
+<marquee direction="right" onmouseout="start()" onmouseover="stop()"  behavior="alternate" id="d">欢迎进入失物招领系统</marquee>
 <div  align="center" id="c">
     <span ><b>失物招领系统</b></span>
 </div>

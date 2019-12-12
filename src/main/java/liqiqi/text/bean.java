@@ -5,6 +5,8 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.unit.DataSize;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.MultipartConfigElement;
 
@@ -25,6 +27,10 @@ public class bean {
         factory.setMaxRequestSize(DataSize.parse("102400KB"));
         return factory.createMultipartConfig();
     }
+
+//新增加一个类用来添加虚拟路径映射
+
+
 
 
 }

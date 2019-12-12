@@ -71,12 +71,13 @@ public class handle1 {
              h+="<div>其他描述"+a5+"</div>\n" +
                      "</body>\n" +
                      "</html>";
-
              String path2="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+b+"/1/"+i+".html";
              file=new File(path2);
              outputStream=new FileOutputStream(file);
              outputStream.write(h.getBytes());
              outputStream.close();
+             inputStream.close();
+
          }
          return "/WEB-INF/jsp/2.jsp";
      }

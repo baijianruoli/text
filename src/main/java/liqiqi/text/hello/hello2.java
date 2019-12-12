@@ -8,6 +8,7 @@ public class hello2 {
     @RequestMapping("hello2")
     public String cc()
     {
-        return "sc/4.html";
+
+        return "/handle3";
     }
 }

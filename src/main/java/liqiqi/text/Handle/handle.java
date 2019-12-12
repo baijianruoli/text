@@ -17,11 +17,11 @@ import java.util.List;
 public class handle {
    @RequestMapping("/handle")
     public String hand(HttpServletRequest requset) throws IOException {
+
        InputStream inputStream=null;
        inputStream = Resources.getResourceAsStream("mapping/config.xml");
        SqlSessionFactory factory=new SqlSessionFactoryBuilder().build(inputStream );
        SqlSession session=factory.openSession();
-
        // Person a= session.selectOne("testa.findPersonByName", "dong");
        //System.out.println(a);
        List<user> list=session.selectList("testa.selectall");
@@ -57,7 +57,6 @@ public class handle {
                    requset.getSession().setAttribute("name",a1);
                    return "/WEB-INF/jsp/2.jsp";
                }
-
            }
            if(!s.equals(a3))
            {
@@ -73,8 +72,6 @@ public class handle {
        {
            return "sc/register.html";
        }
-
-
 
    }
 }
