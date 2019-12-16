@@ -24,7 +24,7 @@ public class handle2 {
     a3=requset.getParameter("a3");
     a5=requset.getParameter("a5");
     b=requset.getParameter("b");
-    String  s=a1+"---发布者:"+b;
+    String  s=a1+"   ---发布者:"+b;
     MultipartHttpServletRequest multipartHttpServletRequest =( MultipartHttpServletRequest)requset;
     List<MultipartFile> list=multipartHttpServletRequest.getFiles("a4");
     for(MultipartFile multipartFile:list)
@@ -43,7 +43,7 @@ public class handle2 {
             file=new File(path);
         }
         OutputStream outputStream=new FileOutputStream(file);
-        byte[] bs=new byte[10000000];
+        byte[] bs=new byte[10000];
         int res=0;
         while((res=inputStream.read(bs))!=-1)
         {
@@ -59,10 +59,12 @@ public class handle2 {
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
                 "    <title>Title</title>\n" +
-                "</head>\n " +
+                "</head>\n <style type=\"text/css\">\n" +
+                ".a1{width: 200px;height: 200px;background: url("+i+".jpg) no-repeat center center;}\n" +
+                "</style>" +
                 "<body>\n";
-        h+="<div><img src='"+f+"'/></div>\n";
-        h+="<div>发布人:"+b+"</div>\n";
+        h+="<div><a href='"+f+"'/><div class='a1'></div></a></div>\n";
+        h+="<div>发布人:<a href='/hello7?ID="+b+"'>"+b+"</a></div>\n";
         h+="<div>丢失物品"+a1+"</div>\n";
         h+="<div>丢失所在地点"+a2+"</div>\n";
         h+="<div>丢失日期"+a3+"</div>\n";
@@ -78,6 +80,6 @@ public class handle2 {
         outputStream.close();
         inputStream.close();
     }
-    return "/WEB-INF/jsp/2.jsp";
+    return "redirect:/hello4";
     }
 }

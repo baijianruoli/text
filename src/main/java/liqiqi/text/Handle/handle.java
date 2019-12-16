@@ -9,10 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-
+//登录界面处理
 @Controller
 public class handle {
    @RequestMapping("/handle")

@@ -9,86 +9,49 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-
 @Controller
 public class handle5 {
    @RequestMapping("/handle5")
     public String cc(HttpServletRequest request)
    {
-       int i=1;
-       int ans=0;
-       ArrayList<load> aa=new ArrayList();
-       ArrayList<load> bb=new ArrayList();
-       int sum= (int) request.getSession().getAttribute("sum");
-       try{
-           for(;i<=sum;i++)
-           {
-               String h= (String) request.getSession().getAttribute(""+i);
-               int j=1;
-               String path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/2/"+j+".html";
-               File file=new File(path);
-               while(file.exists())
-               {
-                   String k="sc/"+h+"/2/"+j+".html";
-                   String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/2/"+j+".txt";
-                   File file1=new File(g);
-                   if(!file1.exists())
-                       break;
-                   FileInputStream in=new FileInputStream(file1);
-                   byte a[]=new byte [10000000];
-                   in.read(a);
-                   String text=new String(a);
-                   load l=new load();
-                   l.setHtml(k);
-                   l.setImage(text);
-                   aa.add(l);
-                   ans++;
-                   j++;
-                   path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/2/"+j+".html";
-                   file=new File(path);
-               }
-           }
-       }
-       catch(IOException s)
-       {
-           s.printStackTrace();
-       }
-       i=1;
-       try{
-           for(;i<=sum;i++)
-           {
-               String h= (String) request.getSession().getAttribute(""+i);
-               int j=1;
-               String path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+j+".html";
-               File file=new File(path);
-               while(file.exists())
-               {
-                   String k="sc/"+h+"/1/"+j+".html";
-                   String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+j+".txt";
-                   File file1=new File(g);
-                   if(!file1.exists())
-                       break;
-                   FileInputStream in=new FileInputStream(file1);
-                   byte a[]=new byte [10000000];
-                   in.read(a);
-                   String text=new String(a);
-                   load l=new load();
-                   l.setHtml(k);
-                   l.setImage(text);
-                   bb.add(l);
-                   ans++;
-                   j++;
-                   path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+j+".html";
-                   file=new File(path);
-               }
-           }
-       }
-       catch(IOException s)
-       {
-           s.printStackTrace();
-       }
-       request.getSession().setAttribute("aa",bb);
-       request.getSession().setAttribute("aa",aa);
-       return  "/WEB-INF/jsp/6.jsp";
+
+      int sum= (int) request.getSession().getAttribute("suma");
+      String name= (String) request.getSession().getAttribute("name");
+      int k=0;
+          for(int j=0;j<sum;j++)
+          {
+              if(k==1)
+              {
+                  int i=j+1;
+                  String path1="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+i+".html";
+                  String path11="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+i+".txt";
+                  String path111="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+i+".jpg";
+                  File file1=new File(path1);
+                  File file11=new File(path11);
+                  File file111=new File(path111);
+                  file1.renameTo(new File("D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".html"));
+                  file11.renameTo(new File("D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".txt"));
+                  file111.renameTo(new File("D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".jpg"));
+
+              }
+              if(request.getParameter(""+j)!=null)
+              {
+                  int i=j+1;
+                   String path1="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+i+".html";
+                  String path11="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+i+".txt";
+                  String path111="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+i+".jpg";
+                  File file1=new File(path1);
+                  File file11=new File(path11);
+                  File file111=new File(path111);
+                  file1.delete();
+                  file11.delete();
+                  file111.delete();
+                  k=1;
+              }
+
+          }
+
+
+             return  "/WEB-INF/jsp/name.jsp";
    }
 }

@@ -1,6 +1,18 @@
 package liqiqi.text;
 
 public class load {
+    public String image;
+    public String  name;
+    public String html;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getImage() {
         return image;
     }
@@ -17,6 +29,7 @@ public class load {
         this.html = html;
     }
 
-    private String image;
-    private String html;
+
+
+
 }
