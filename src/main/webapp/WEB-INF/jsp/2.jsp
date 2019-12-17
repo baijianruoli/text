@@ -118,7 +118,7 @@
 <div>
     <%
         String name= (String) request.getSession().getAttribute("name");
-        File file=new File("D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name);
+        File file=new File("D:/新建文件夹 (2)/text/src/main/webapp/"+name);
         if(!file.exists())
         {
             file.mkdir();

@@ -20,17 +20,17 @@
     {
         String h= (String)request.getSession().getAttribute(""+j);
         int k=1;
-        String path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+k+".html";
+        String path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+k+".jsp";
         File file=new File(path);
         while(file.exists())
         {
-            String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+k+".txt";
+            String g="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+k+".txt";
             File file1=new File(g);
             if(!file1.exists())
                 break;
             ans++;
             k++;
-            path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+k+".html";
+            path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+k+".jsp";
             file=new File(path);
         }
     }
@@ -41,17 +41,17 @@
     {
         String h= (String)request.getSession().getAttribute(""+j);
         int k=1;
-        String path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/2/"+k+".html";
+        String path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/2/"+k+".jsp";
         File file=new File(path);
         while(file.exists())
         {
-            String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/2/"+k+".txt";
+            String g="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/2/"+k+".txt";
             File file1=new File(g);
             if(!file1.exists())
                 break;
             ans++;
             k++;
-            path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/2/"+k+".html";
+            path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/2/"+k+".jsp";
             file=new File(path);
         }
     }

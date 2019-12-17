@@ -33,7 +33,7 @@ public class register {
             u.setUsername(a1);
             session.insert("testa.insert",u);
             session.commit();
-            return "sc/1.html";
+            return "sc/1.jsp";
 
     }
 

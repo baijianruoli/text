@@ -14,8 +14,10 @@ public class hello7 {
     user=  request.getParameter("ID");
      String name= null;
              name=(String) request.getSession().getAttribute("name");
-
+  System.out.println(user+"---"+name);
      if(user==null)
+         return "/WEB-INF/jsp/name.jsp";
+     else if(user.equals(name))
          return "/WEB-INF/jsp/name.jsp";
      else
          return "/WEB-INF/jsp/user.jsp";

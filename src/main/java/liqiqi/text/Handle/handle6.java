@@ -19,23 +19,23 @@ public class handle6 {
         if(k==1)
         {
             int i=j+1;
-            String path1="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+i+".html";
-            String path11="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+i+".txt";
-            String path111="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+i+".jpg";
+            String path1="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+i+".jsp";
+            String path11="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+i+".txt";
+            String path111="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+i+".jpg";
             File file1=new File(path1);
             File file11=new File(path11);
             File file111=new File(path111);
-            file1.renameTo(new File("D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".html"));
-            file11.renameTo(new File("D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".txt"));
-            file111.renameTo(new File("D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".jpg"));
+            file1.renameTo(new File("D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+j+".jsp"));
+            file11.renameTo(new File("D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+j+".txt"));
+            file111.renameTo(new File("D:/新建文件夹 (2)/text/src/main/webapp//"+name+"/1/"+j+".jpg"));
 
         }
         if(request.getParameter(""+j)!=null)
         {
             int i=j+1;
-            String path1="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+i+".html";
-            String path11="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+i+".txt";
-            String path111="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+i+".jpg";
+            String path1="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+i+".jsp";
+            String path11="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+i+".txt";
+            String path111="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+i+".jpg";
             File file1=new File(path1);
             File file11=new File(path11);
             File file111=new File(path111);

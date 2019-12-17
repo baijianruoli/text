@@ -52,12 +52,12 @@
     ArrayList<load> bb=new ArrayList();
     String name= request.getParameter("ID");
     int j=1;
-    String path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".html";
+    String path="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".jsp";
     File file=new File(path);
     while(file.exists())
     {
-        String k="sc/"+name+"/2/"+j+".html";
-        String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".txt";
+        String k="/"+name+"/2/"+j+".jsp";
+        String g="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".txt";
         File file1=new File(g);
         if(!file1.exists())
             break;
@@ -71,17 +71,17 @@
         aa.add(l);
         ans++;
         j++;
-        path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".html";
+        path="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".jsp";
         file=new File(path);
         in.close();
     }
     j=1;
-    path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".html";
+    path="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+j+".jsp";
     file=new File(path);
     while(file.exists())
     {
-        String k="sc/"+name+"/1/"+j+".html";
-        String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".txt";
+        String k="/"+name+"/1/"+j+".jsp";
+        String g="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+j+".txt";
         File file1=new File(g);
         if(!file1.exists())
             break;
@@ -95,7 +95,7 @@
         bb.add(l);
         ans++;
         j++;
-        path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".html";
+        path="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+j+".jsp";
         file=new File(path);
         in.close();
     }
@@ -104,23 +104,19 @@
 <div class="a"><p><%=name%>的个人主页</p></div>
 <div class="b" align="center">
     <span class="d"><p><%=name%>发布的招领帖</p></span>
-    <form action="/handle5">
         <table border="1" align="center">
             <c:forEach var="i" items="${aa}"   varStatus="it">
-                <tr align="center"><td><a href="<c:out value="${i.html}"/>"/><c:out value="${i.image}"></c:out></td><td><input type="submit" value="删除" name="${it.index}"></td></tr>
+                <tr align="center"><td><a href="<c:out value="${i.html}"/>"/><c:out value="${i.image}"></c:out></td></tr>
             </c:forEach>
         </table>
-    </form >
 </div>
 <div class="c" align="center">
     <span class="d"><p><%=name%>发布的丢失帖</p></span>
-    <form action="/handle6">
         <table border="1" align="center" >
             <c:forEach var="i" items="${bb}"   varStatus="it">
-                <tr align="center"><td><a href="<c:out value="${i.html}"/>"/><c:out value="${i.image}"></c:out></td><td><input type="submit" value="删除" name="${it.index}"></td></tr>
+                <tr align="center"><td><a href="<c:out value="${i.html}"/>"/><c:out value="${i.image}"></c:out></td></tr>
             </c:forEach>
         </table>
-    </form>
 </div>
 </body>
 </html>

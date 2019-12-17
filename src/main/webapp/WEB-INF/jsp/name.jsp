@@ -57,12 +57,12 @@
     ArrayList<load> bb=new ArrayList();
     String name= (String) request.getSession().getAttribute("name");
             int j=1;
-            String path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".html";
+            String path="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".jsp";
             File file=new File(path);
             while(file.exists())
             {
-                String k="sc/"+name+"/2/"+j+".html";
-                String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".txt";
+                String k="/"+name+"/2/"+j+".jsp";
+                String g="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".txt";
                 File file1=new File(g);
                 if(!file1.exists())
                     break;
@@ -76,17 +76,17 @@
                 aa.add(l);
                 ans++;
                 j++;
-                path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/2/"+j+".html";
+                path="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".jsp";
                 file=new File(path);
                 in.close();
             }
      j=1;
-    path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".html";
+    path="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+j+".jsp";
     file=new File(path);
     while(file.exists())
     {
-        String k="sc/"+name+"/1/"+j+".html";
-        String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".txt";
+        String k="/"+name+"/1/"+j+".jsp";
+        String g="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+j+".txt";
         File file1=new File(g);
         if(!file1.exists())
             break;
@@ -100,7 +100,7 @@
         bb.add(l);
         ans++;
         j++;
-        path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+name+"/1/"+j+".html";
+        path="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/1/"+j+".jsp";
         file=new File(path);
         in.close();
     }

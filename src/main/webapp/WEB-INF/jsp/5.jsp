@@ -26,12 +26,12 @@
         {
             String h= (String) request.getSession().getAttribute(""+i);
             int j=1;
-            String path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+j+".html";
+            String path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+j+".jsp";
             File file=new File(path);
             while(file.exists())
             {
-                String k="sc/"+h+"/1/"+j+".html";
-                String g="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+j+".txt";
+                String k="/"+h+"/1/"+j+".jsp";
+                String g="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+j+".txt";
                 File file1=new File(g);
                 if(!file1.exists())
                     break;
@@ -45,7 +45,7 @@
                 aa.add(l);
                 ans++;
                 j++;
-                path="D:/新建文件夹 (2)/text/src/main/resources/static/sc/"+h+"/1/"+j+".html";
+                path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+j+".jsp";
                 file=new File(path);
                 in.close();
             }
