@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件 -->
+<mapper namespace="test">
+    <select id="findPersonByName" resultType="liqiqi.text.user" parameterType="String">
+   select * from user where person.personname= #{id}
+</select>
+    <select id="selectall" resultType="liqiqi.text.title" parameterType="String">
+    select * from ${value}
+</select>
+    <select id="selectal" resultType="liqiqi.text.comment" parameterType="String">
+    select * from ${value}
+</select>
+    <select id="cout" resultType="String" >
+     show tables
+</select>
+  <update id="upp" parameterType="String">
+ create table  ${value} (
+ name  varchar(50),
+      some varchar (50),
+      place varchar (50),
+      date varchar(50),
+      other varchar (100),
+      picture varchar (100),
+      id varchar(50)
+
+ )
+    </update>
+    <update id="pp" parameterType="String">
+ create table  ${value} (
+      name varchar(50),
+      date varchar(50),
+      other varchar(50)
+
+ )
+  </update>
+    <select id="coutt" resultType="int"  parameterType="String" >
+    select count(*)  from  ${value}
+</select>
+    <insert id="ii" parameterType="java.util.HashMap">
+        insert into ${a0} values('${a1}','${a2}','${a3}','${a4}','${a5}','${a6}','${a7}')
+    </insert>
+    <insert id="into" parameterType="java.util.HashMap">
+        insert into ${a1} values('${a2}','${a3}','${a4}')
+    </insert>
+    <select id="selectid"  parameterType="java.util.HashMap" resultType="liqiqi.text.title">
+        select * from ${a1} where id=${a2}
+    </select>
+    <delete id="delete1" parameterType="java.util.HashMap">
+        delete from ${a1} where id=${a2}
+    </delete>
+    <update id="up1" parameterType="String">
+        drop table ${value}
+    </update>
+    <delete id="deletedate" parameterType="java.util.HashMap">
+        delete from ${a1} where date='${a2}'
+    </delete>
+
+</mapper>

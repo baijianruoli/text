@@ -1,4 +1,11 @@
-<%@ page import="java.io.File" %><%--
+<%@ page import="java.io.File" %>
+<%@ page import="java.io.InputStream" %>
+<%@ page import="org.apache.ibatis.io.Resources" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
+<%@ page import="org.apache.ibatis.session.SqlSession" %>
+<%@ page import="liqiqi.text.total" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: VULCAN
   Date: 2019/12/9
@@ -10,6 +17,7 @@
 <head>
     <title>Title</title>
 </head>
+<link href="file:///C|/Users/VULCAN/AppData/Roaming/Adobe/Dreamweaver CS6/zh_CN/Configuration/Temp/Assets/eamD91.tmp/SpryMenuBarVertical.css" rel="stylesheet" type="text/css">
 <script src="http://cdn.bootcss.com/echarts/3.2.3/echarts.min.js"></script>
 <style type="text/css">
     #id{
@@ -18,77 +26,76 @@
     b{
         color:#FFF;
     }
-    #c{
-        background-color:#000;
-        bottom: 0;
+    ul.MenuBarVertical iframe
+    {
         position: absolute;
-        width: 100%;
+        z-index: 1010;
+        filter:alpha(opacity:0.1);
     }
-    #d{
-        bottom: 100px;
-
+    ul.MenuBarVertical
+    {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        font-size: 100%;
+        cursor: default;
+        width: 8em;
     }
-    .nav-link {
+    ul.MenuBarActive
+    {
+        z-index: 1000;
+    }
+    ul.MenuBarVertical li
+    {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        font-size: 100%;
         position: relative;
-        padding: 0 14px;
-        line-height: 34px;
-        font-size: 10px;
-        font-weight: bold;
-        color: #555;
-        text-decoration: none;
+        text-align: left;
+        cursor: pointer;
+        width: 8em;
     }
-    .nav-link:hover {
+    ul.MenuBarVertical ul
+    {
+        margin: -5% 0 0 95%;
+        padding: 0;
+        list-style-type: none;
+        font-size: 100%;
+        position: absolute;
+        z-index: 1020;
+        cursor: default;
+        width: 8.2em;
+        left: -1000em;
+        top: 0;
+    }
+    ul.MenuBarVertical
+    {
+        border: 1px solid #CCC;
+    }
+    ul.MenuBarVertical ul
+    {
+        border: 1px solid #CCC;
+    }
+    ul.MenuBarVertical a
+    {
+        display: block;
+        cursor: pointer;
+        background-color: #EEE;
+        padding: 0.5em 0.75em;
         color: #333;
-        text-decoration: underline;
-    }
-
-    .nav-counter {
-
-        top: -1px;
-        right: 1px;
-        min-width: 8px;
-        height: 20px;
-        line-height: 20px;
-
-        padding: 0 6px;
-        font-weight: normal;
-        color: white;
-        text-align: center;
-        text-shadow: 0 1px rgba(0, 0, 0, 0.2);
-        background: #e23442;
-        border: 1px solid #911f28;
-        border-radius: 11px;
-        background-image: -webkit-linear-gradient(top, #e8616c, #dd202f);
-        background-image: -moz-linear-gradient(top, #e8616c, #dd202f);
-        background-image: -o-linear-gradient(top, #e8616c, #dd202f);
-        background-image: linear-gradient(to bottom, #e8616c, #dd202f);
-        -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
-        box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
-    }
-
-    .nav-counter-green {
-        background: #75a940;
-        border: 1px solid #42582b;
-        background-image: -webkit-linear-gradient(top, #8ec15b, #689739);
-        background-image: -moz-linear-gradient(top, #8ec15b, #689739);
-        background-image: -o-linear-gradient(top, #8ec15b, #689739);
-        background-image: linear-gradient(to bottom, #8ec15b, #689739);
-    }
-
-    .nav-counter-blue {
-        background: #3b8de2;
-        border: 1px solid #215a96;
-        background-image: -webkit-linear-gradient(top, #67a7e9, #2580df);
-        background-image: -moz-linear-gradient(top, #67a7e9, #2580df);
-        background-image: -o-linear-gradient(top, #67a7e9, #2580df);
-        background-image: linear-gradient(to bottom, #67a7e9, #2580df);
+        text-decoration: none;
     }
     .main_left{
         width: 140px;
-        height: 100%;
+        height:90%;
         float:left;
-        background: #5585c0;
+
         cursor:pointer;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        position: relative;
     }
 </style>
 <body>
@@ -100,19 +107,20 @@
         });
     });
 </script>
-<div class="main_left" style="height:100%">
-    <ul >
-        <li><a href="/hello7"  target="targetText">我的信息</a></li>
+<h1 align="center" style="background-color: #EEE">失物招领系统</h1>
+<div class="main_left"  >
+    <ul id="MenuBar1" class="MenuBarVertical">
+       <li class="c"><a href="/hello7"  target="targetText">我的信息</a></li>
         &emsp;
-        <li><a href="/hello"  target="targetText">发布失物</a></li>
+        <li class="c"><a href="/hello"  target="targetText">发布失物</a></li>
         &emsp;
-        <li><a href="/hello1"  target="targetText">发布招领</a></li>
+        <li class="c"><a href="/hello1"  target="targetText">发布招领</a></li>
         &emsp;
-        <li><a href="/hello2"  target="targetText">查询招领</a></li>
+        <li class="c"><a href="/hello2"  target="targetText">查询招领</a></li>
         &emsp;
-        <li><a href="/hello3"  target="targetText">查询失物</a></li>
+        <li class="c"> <a href="/hello3"  target="targetText">查询失物</a></li>
         &emsp;
-        <li><a href="/hello4"  target="targetText">网站大厅</a></li>
+        <li class="c"><a href="/hello4"  target="targetText">网站大厅</a></li>
     </ul>
 </div>
 <div>
@@ -123,10 +131,35 @@
         {
             file.mkdir();
         }
+        InputStream inputStream=null;
+        inputStream= Resources.getResourceAsStream("mapping/config1.xml");
+        SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession=sqlSessionFactory.openSession();
+        List<String> list=sqlSession.selectList("test.cout");
+        int i=0,j=0;
+        for(String s:list)
+        {
+            if((name+"1").equals(s))
+            {
+                i=1;
+            }
+            if((name+"2").equals(s))
+            {
+                j=1;
+            }
+
+        }
+        if(i==0)
+            sqlSession.update("test.upp",name+"1");
+        if(j==0)
+            sqlSession.update("test.upp",name+"2");
+
+
+
+
+
 %>
 </div>
-<div class="main_right"> <iframe frameborder="0" scrolling="yes" style="width:80%;height:100%" src="/hello4" name="targetText"></iframe>        </div>
-
-
+<div class="main_right"> <iframe frameborder="0" scrolling="yes" style="width:80%;height:100%" src="/hello4" name="targetText"></iframe> </div>
 </body>
 </html>

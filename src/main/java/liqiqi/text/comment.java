@@ -5,39 +5,30 @@ import java.util.Date;
 
 public class comment implements Serializable {
     public String name;
-    public Date  date;
-    public  String comments;
+    public  String  date;
+    public  String other;
 
     public String getName() {
         return name;
     }
 
-    public comment(String name, Date date, String comments) {
-        this.name = name;
-        this.date = date;
-        this.comments = comments;
-    }
-  public comment()
-  {
-
-  }
     public void setName(String name) {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public String getComments() {
-        return comments;
+    public String getOther() {
+        return other;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setOther(String other) {
+        this.other = other;
     }
 }

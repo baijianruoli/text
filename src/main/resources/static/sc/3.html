@@ -1,37 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>注册页面</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        body{
+
+            /*no-repeat center 图片不重复，居中，这里不使用*/
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            position: absolute;
+        }
+
+        .rg_layout{
+            width: 900px;
+            height: 500px;
+            border: 8px solid #EEEEEE; /*边框*/
+            background-color: white;
+            /*让div水平居中*/
+            margin: auto;
+            margin-top: 55px;
+        }
+
+        .rg_left{
+            /*border:1px solid #99ffff;*/ /*边框不要*/
+            float: left;
+            margin: 15px;	/*外边距*/
+        }
+
+        .rg_left > p:first-child{
+            color:#FFD026;
+            font-size: 20px;
+        }
+        .rg_left > p:last-child{
+            color: #A6A6A6;
+            font-size: 20px;
+        }
+
+        .rg_center{
+            /*border:1px solid #99ffff;*/
+            margin-top: 100px;
+            float: left;
+            width: 450px;
+
+        }
+        .rg_right{
+            /*border:1px solid #99ffff;*/
+            float: right;
+            margin: 15px;	/*外边距*/
+        }
+        .rg_right > p:first-child{
+
+            font-size: 15px;
+        }
+        .rg_right p a{
+            color: pink;
+        }
+
+        .td_left{
+            width: 100px;
+            text-align: right;
+            height: 45px;
+        }
+
+        .td_right{
+            padding-left: 50px;
+        }
+
+        #username,#password,#email,#name,#tel,#birthday,#checkcode,#birthday1,#birthday2,.birthday3,#birthday4,#birthday5{
+            width: 251px;
+            height: 32px;
+            border:1px solid #A6A6A6;
+            /*设置边框*/
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+        #checkcode{
+            width: 110px;
+        }
+
+        #img_check{
+            height: 32px;
+            vertical-align: middle;
+        }
+
+        #btn_sub{
+            width: 150px;
+            height: 40px;
+            background-color:#ffffcc;
+            border:1px solid #ffffcc;
+        }
+
+    </style>
 </head>
-<style type="text/css">
-    div{
-        position: absolute;
-        left:50%;
-        top:50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
 <body>
-<div>
-    <form action="/handle2" enctype="multipart/form-data" method="post">
-        发布人<input type="text"  name="b"><br>
-        拾到的物品<input type="text"  name="a1"><br>
-        拾到所在地点<input type="text"  name="a2" list="gg">
-        <datalist id="gg">
-            <option>一号教学楼</option>
-            <option>二号教学楼</option>
-            <option>三号教学楼</option>
-            <option>一号寝室楼</option>
-            <option>二号寝室楼</option>
-            <option>餐厅</option>
-        </datalist>
-        <br>
-        拾到日期<input type="text"  name="a3"><br>
-        其他描述<textarea  name="a5"> </textarea><br>
-        图片<input type="file" name="a4"  id="a4"><br>
-        <input type="submit" value="提交">
-    </form>
+
+
+<div class="rg_layout">
+    <div class="rg_left">
+        <p >招领发帖</p>
+        <p>find article</p>
+    </div>
+    <div class="rg_center">
+        <div class="rg_form">
+            <!--定义表单-->
+            <form action="/handle2" method="post" enctype="multipart/form-data" >
+                <table>
+                    <tr>
+                        <td class="td_left"><label for="birthday1">拾到的物品</label></td>
+                        <td class="td_right"><input type="text" name="a1"  id="birthday1" placeholder="请输入拾到的物品"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="birthday2">拾到所在地点</label></td>
+                        <td class="td_right"><input type="text" name="a2"  id="birthday2" placeholder="请输入拾到所在地点" list="gg">
+                            <datalist id="gg">
+                                <option>一号教学楼</option>
+                                <option>二号教学楼</option>
+                                <option>三号教学楼</option>
+                                <option>一号寝室楼</option>
+                                <option>二号寝室楼</option>
+                                <option>餐厅</option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label >拾到日期</label></td>
+                        <td class="td_right"><input type="text" name="a3"  class="birthday3" placeholder="请输入拾到日期" id="ww" ></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="birthday4">其他描述</label></td>
+                        <td class="td_right"><input type="text" name="a5"  id="birthday4" placeholder="请输入其他描述"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="birthday4">图片</label></td>
+                        <td class="td_right"><input type="file" name="a4"  id="a4" placeholder="请提交图片"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right" ><input type="submit" value="提交" name="b" id="btn_sub"></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+
 </div>
+<script type="text/javascript">
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    };
+    document.getElementById("ww").value = getNowFormatDate();
+
+</script>
 </body>
 </html>

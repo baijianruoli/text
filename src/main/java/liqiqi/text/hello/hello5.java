@@ -8,6 +8,6 @@ public class hello5 {
 @RequestMapping("/hello5")
     public String cc()
 {
-    return "sc/123/2/1.jsp";
+    return "/WEB-INF/jsp/perform.jsp";
 }
 }

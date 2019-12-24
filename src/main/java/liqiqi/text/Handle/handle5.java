@@ -1,6 +1,11 @@
 package liqiqi.text.Handle;
 
 import liqiqi.text.load;
+import liqiqi.text.title;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,48 +13,38 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 @Controller
 public class handle5 {
    @RequestMapping("/handle5")
-    public String cc(HttpServletRequest request)
-   {
+    public String cc(HttpServletRequest request) throws IOException {
+      String name = (String) request.getSession().getAttribute("name");
+       String index = (String) request.getParameter("index");
+      String from=request.getParameter("from");
+      System.out.println(name+" "+from+" "+index);
+       InputStream in=null;
+       in= Resources.getResourceAsStream("mapping/config1.xml");
+       SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(in);
+       SqlSession sqlSession=sqlSessionFactory.openSession();
+       HashMap<String,String> hashMap=new HashMap<>();
+       hashMap.put("a1",name+from);
+       hashMap.put("a2",index);
+       HashMap<String,String> k=new HashMap<>();
+       k.put("a1",name+from);
+       k.put("a2",index);
+      title t=sqlSession.selectOne("test.selectid",k);
+      String path=t.getPicture();
+      File file=new File(path);
+      if(file.exists())
+      {
+          file.delete();
 
-      int sum= (int) request.getSession().getAttribute("suma");
-      String name= (String) request.getSession().getAttribute("name");
-      int k=0;
-          for(int j=0;j<sum;j++)
-          {
-              if(k==1)
-              {
-                  int i=j+1;
-                  String path1="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+i+".jsp";
-                  String path11="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+i+".txt";
-                  String path111="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+i+".jpg";
-                  File file1=new File(path1);
-                  File file11=new File(path11);
-                  File file111=new File(path111);
-                  file1.renameTo(new File("D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".jsp"));
-                  file11.renameTo(new File("D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".txt"));
-                  file111.renameTo(new File("D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+j+".jpg"));
-
-              }
-              if(request.getParameter(""+j)!=null)
-              {
-                  int i=j+1;
-                   String path1="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+i+".jsp";
-                  String path11="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+i+".txt";
-                  String path111="D:/新建文件夹 (2)/text/src/main/webapp/"+name+"/2/"+i+".jpg";
-                  File file1=new File(path1);
-                  File file11=new File(path11);
-                  File file111=new File(path111);
-                  file1.delete();
-                  file11.delete();
-                  file111.delete();
-                  k=1;
-              }
-
-          }
+      }
+       sqlSession.delete("test.delete1",hashMap);
+       sqlSession.update("test.up1",name+"0"+from+index);
+       sqlSession.commit();
 
 
              return  "/WEB-INF/jsp/name.jsp";

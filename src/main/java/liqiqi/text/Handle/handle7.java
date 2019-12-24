@@ -29,9 +29,9 @@ public class handle7 {
           FileOutputStream outputStream= new FileOutputStream(file);
           out= new ObjectOutputStream(outputStream);
           comment c=new comment();
-          c.setComments(request.getParameter("a"));
+          c.setOther(request.getParameter("a"));
           c.setName((String) request.getSession().getAttribute("name"));
-          c.setDate(new Date());
+          c.setDate(new Date().toString());
           arrayList.add(c);
           out.writeObject(arrayList);
           out.close();
@@ -43,14 +43,14 @@ public class handle7 {
          arrayList= (ArrayList<comment>) in.readObject();
           out= new ObjectOutputStream(new FileOutputStream(file));
           comment c=new comment();
-          c.setComments(request.getParameter("a"));
+          c.setOther(request.getParameter("a"));
           c.setName((String) request.getSession().getAttribute("name"));
-          c.setDate(new Date());
+          c.setDate(new Date().toString());
           arrayList.add(c);
           out.writeObject(arrayList);
-          out.close();
+           out.flush();
           in.close();
-
+          out.close();
       }
         return  "redirect:"+path+".jsp";
     }

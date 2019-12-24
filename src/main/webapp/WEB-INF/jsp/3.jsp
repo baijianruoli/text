@@ -20,6 +20,7 @@
 <script>
     alert("用户信息错误");
     window.history.back(-1);
+
 </script>
 <%}%>
 

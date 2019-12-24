@@ -11,22 +11,19 @@
     select * from user
 </select>
     <select id="cout" resultType="int" >
-    select count(*)  from user
+    select count(*)  from  user
 </select>
     <insert id="insert"  parameterType="liqiqi.text.user">
         insert into user (username,password) values(#{username},#{password});
    </insert>
-    <select id="show" resultType="String">
-       show tables
-    </select>
-    <update id="build" parameterType="String">
-        create table #{0} (
-        name varchar(200),
-        date varchar(200),
-        comments varchar (200),
-        );
-    </update>
-    <update id="rename" parameterType="Map">
-        rename table #{0} to
-    </update>
+<select id="select"  resultType="liqiqi.text.total">
+
+select * from total
+</select>
+    <insert id="up" parameterType="liqiqi.text.total">
+         insert into total (push,pop) values(#{push},#{pop});
+    </insert>
+<delete id="de">
+    truncate table total
+</delete>
 </mapper>

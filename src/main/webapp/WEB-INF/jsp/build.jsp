@@ -1,4 +1,12 @@
-<%@ page import="java.io.File" %><%--
+<%@ page import="java.io.File" %>
+<%@ page import="java.io.InputStream" %>
+<%@ page import="org.apache.ibatis.io.Resources" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
+<%@ page import="org.apache.ibatis.session.SqlSession" %>
+<%@ page import="liqiqi.text.total" %>
+<%@ page import="liqiqi.text.user" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: VULCAN
   Date: 2019/12/15
@@ -13,53 +21,30 @@
 <script src="http://cdn.bootcss.com/echarts/3.2.3/echarts.min.js"></script>
 <body>
 <%
-    int i= (int) request.getSession().getAttribute("sum");
-    int j=1;
-    int ans=0;
-    for(;j<=i;j++)
-    {
-        String h= (String)request.getSession().getAttribute(""+j);
-        int k=1;
-        String path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+k+".jsp";
-        File file=new File(path);
-        while(file.exists())
-        {
-            String g="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+k+".txt";
-            File file1=new File(g);
-            if(!file1.exists())
-                break;
-            ans++;
-            k++;
-            path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/1/"+k+".jsp";
-            file=new File(path);
-        }
-    }
-    request.getSession().setAttribute("first",ans);
-    j=1;
-    ans=0;
-    for(;j<=i;j++)
-    {
-        String h= (String)request.getSession().getAttribute(""+j);
-        int k=1;
-        String path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/2/"+k+".jsp";
-        File file=new File(path);
-        while(file.exists())
-        {
-            String g="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/2/"+k+".txt";
-            File file1=new File(g);
-            if(!file1.exists())
-                break;
-            ans++;
-            k++;
-            path="D:/新建文件夹 (2)/text/src/main/webapp/"+h+"/2/"+k+".jsp";
-            file=new File(path);
-        }
-    }
-    request.getSession().setAttribute("second",ans);
-    int first= (int) request.getSession().getAttribute("first");
-    int second= (int) request.getSession().getAttribute("second");
     String name= (String) request.getSession().getAttribute("name");
-
+    InputStream inputStream=null;
+    inputStream= Resources.getResourceAsStream("mapping/config.xml");
+    SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
+    SqlSession sqlSession=sqlSessionFactory.openSession();
+    List<user> list=sqlSession.selectList("testa.selectall");
+    int q=0,p=0;
+    for(user u:list)
+    {
+        InputStream in=Resources.getResourceAsStream("mapping/config1.xml");
+        SqlSessionFactory sqlSessionFactor=new SqlSessionFactoryBuilder().build(in);
+        SqlSession sql=sqlSessionFactor.openSession();
+        int h=sql.selectOne("test.coutt",u.getUsername()+"1");
+        q+=h;
+        h=sql.selectOne("test.coutt",u.getUsername()+"2");
+        p+=h;
+    }
+    System.out.println(q+""+p);
+    total t=new total();
+    t.setPush(q);
+    t.setPop(p);
+    sqlSession.update("testa.de");
+    sqlSession.insert("testa.up",t);
+    sqlSession.commit();
 
 %>
 <div id="main" style="width: 600px;height:400px;"></div>
@@ -88,7 +73,7 @@
                 radius : '65%',
                 center: ['50%', '50%'],
                 selectedMode: 'single',
-                data:[{name: '招领帖',value: <%=second%>},{name: '丢失帖',value:<%=first%>}],
+                data:[{name: '招领帖',value: <%=p%>},{name: '丢失帖',value:<%=q%>}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
